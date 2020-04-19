@@ -8,29 +8,67 @@
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Type:</label>
                     <div class="col-sm-6">
-                        <select class="form-control" name="wtype" [(ngModel)]="workout.type">
-                            <option value="">(Select)</option>
-                            <option value="bike">Bike</option>
-                            <option value="run">Run</option>
-                            <option value="row">Row</option>
-                        </select>
+                        <div class="btn-group btn-group-toggle" ngbRadioGroup name="wtype" [(ngModel)]="workout.type">
+                            <label ngbButtonLabel class="btn-primary"><input ngbButton type="radio"
+                                    value="bike">Bike</label>
+                            <label ngbButtonLabel class="btn-primary"><input ngbButton type="radio"
+                                    value="run">Run</label>
+                            <label ngbButtonLabel class="btn-primary"><input ngbButton type="radio"
+                                    value="row">Row</label>
+                        </div>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Date:</label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" name="wdate" [(ngModel)]="workout.date" />
+                        <!-- <ngb-datepicker #d name="wdate" [(ngModel)]="workout.date" [startDate]="startDate"
+                            [maxDate]="maxDate">
+                        </ngb-datepicker> -->
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="wdate" [(ngModel)]="workout.date"
+                                [maxDate]="maxDate" ngbDatepicker #d="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-info calendar" (click)="d.toggle()" type="button">
+                                    <fa-icon [icon]="calenderIcon"></fa-icon>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
+                <!-- <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Time:</label>
+                    <div class="col-sm-3">
+                        <ngb-timepicker name="tp" [(ngModel)]="workout.time" [meridian]="true" [seconds]="false"
+                            [spinners]="false" [minuteStep]="15">
+                        </ngb-timepicker>
+                    </div>
+                </div> -->
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Quality:</label>
+                    <div class="col-sm-3 mt-sm-2">
+                        <ngb-rating [(rate)]="workout.rating" [readonly]="false" max="5">
+                            <ng-template let-fill="fill">
+                                <span class="star" [ngClass]="'color'+workout.rating"
+                                    [class.filled]="fill === 100">&#9733;</span>
+                            </ng-template>
+                        </ngb-rating>
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Distance:</label>
                     <div class="col-sm-3">
                         <input type="text" class="form-control" name="wdistance" [(ngModel)]="workout.distance" />
                     </div>
                 </div>
-
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Location:</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" name="wlocation" [(ngModel)]="workout.location"
+                            [ngbTypeahead]="locationsSearch" />
+                        <!-- [resultFormatter]="locationsFormatter" [inputFormatter]="locationsFormatter" -->
+                    </div>
+                </div>
                 <div class="form-group row">
                     <div class="col-sm-4 mt-sm-3">
                         <button class="btn btn-primary mr-sm-2" (click)="save()">Save</button>

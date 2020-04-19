@@ -37,5 +37,17 @@ export class WorkoutsService {
   deleteWorkout(id) {
     return this.http.delete(`${this.baseUrl}/workouts/${id}`);
   }
+
+  searchLocations(searchTerm) {
+    return this.http.get<any[]>(`${this.baseUrl}/locations?q=${searchTerm}`);
+  }
+
+  getPerfTargets() {
+    return this.http.get(`${this.baseUrl}/performanceTargets`);
+  }
+
+  savePerfTargets(perfTargets: any) {
+    return this.http.put(`${this.baseUrl}/performanceTargets`, perfTargets);
+  }
 }
 

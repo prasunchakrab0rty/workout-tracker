@@ -6,4 +6,34 @@
             Welcome to Workout Tracker!
         </p>
     </div>
+    <ngb-accordion closeOthers="true" activeIds="panel-1" type="success" #acc="ngbAccordion"
+        (panelChange)="onPanelChange($event)">
+
+        <ngb-panel id="panel-1">
+            <ng-template ngbPanelTitle>
+                <p class="font-weight-bold">Welcome</p>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <p>Welcome to Workout Tracker!</p>
+                <p class="float-right">
+                    <button class="btn btn-info" (click)="onNext(1)">Next</button>
+                </p>
+            </ng-template>
+        </ngb-panel>
+
+        <ngb-panel title="How To" id="panel-2">
+            <ng-template ngbPanelContent>
+                <p>Click on Workouts in the menu to start tracking your progress.</p>
+                <p class="float-right">
+                    <button class="btn btn-info" (click)="onNext(2)">Next</button>
+                </p>
+            </ng-template>
+        </ngb-panel>
+
+        <ngb-panel title="Enjoy!" id="panel-3">
+            <ng-template ngbPanelContent>
+                <p>We hope you enjoy Workout Tracker!</p>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
 </div>
